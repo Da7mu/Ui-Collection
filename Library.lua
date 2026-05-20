@@ -1,5 +1,5 @@
 -- Made by samet
--- Leaked by the Guy who bought the Ui himself
+-- Reposted by @da7mu on Discord
 
 if getgenv().Library then
     getgenv().Library:Unload()
