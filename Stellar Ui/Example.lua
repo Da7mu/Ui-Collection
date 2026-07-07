@@ -2,216 +2,82 @@
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Da7mu/Leaked-Stellar-Ui/refs/heads/main/Stellar%20Ui/Library.lua"))()
 
-local Window = Library:CreateWindow({
-    Name = "Stellar Ui",
-    SubName = "Reposted by Da7mu",
-    Logo = "rbxassetid://81441172534384",
-    WatermarkEnabled = true,
-    WatermarkText = "Stellar Example",
-    SettingsTabEnabled = true,
-    ExpiresSeconds = 86400
-})
+local Window = Library:Window({Name = "Window", SubName = "SubWindow", Logo = "rbxassetid://81441172534384"})
+local Watermark = Library:Watermark("This is a watermark", "rbxassetid://81441172534384")
 
--- tabs/pages
-local CombatPage = Window:AddTab({
-    Name = "Combat",
-    Icon = "sword"
-})
+local Page = Window:Page({Name = "Page", Icon = "rbxassetid://72196061405823"})
 
--- sections
-local MainSection = CombatPage:AddSection({
-    Name = "Aimbot & Triggerbot",
-    Icon = "crosshair"
-})
+for Index = 1, 3 do 
+    Window:Page({Name = "Page", Icon = "rbxassetid://72196061405823"})
+end
 
-local MainSection2 = CombatPage:AddSection({
-    Name = "BonnieBlue",
-    Icon = "house"
-})
+Library:CreateSettingsPage(Window, Watermark)
 
--- toggle
-MainSection:AddToggle({
-    Name = "Enable Aimbot",
-    Default = false,
-    Flag = "AimbotEnabled",
-    Callback = function(v) end
-})
+local AimbotSection = Page:Section({Name = "Aimbot", Side = 1})
 
--- button
-MainSection:AddButton({
-    Name = "Force Headshot",
-    Callback = function(value)
+AimbotSection:Toggle({
+    Name = "Toglge",
+    Flag = "Toggle",
+    Callback = function(Value)
+        print(Value)
     end
 })
 
--- slider
-MainSection:AddSlider({
-    Name = "FOV",
+AimbotSection:Button({
+    Name = "Button",
+    Callback = function()
+        print("Button")
+    end
+})
+
+AimbotSection:Slider({
+    Name = "Slider",
+    Flag = "Slider",
+    Default = 50,
     Min = 0,
-    Max = 360,
-    Default = 120,
-    Flag = "idkfov",
-    Callback = function(value)
+    Max = 100,
+    Suffix = "%",
+    Callback = function(Value)
+        print(Value)
     end
 })
 
--- dropdown
-MainSection:AddDropdown({
-    Name = "Aim Part",
-    Items = {"Head", "UpperTorso", "HumanoidRootPart", "Random"},
-    Default = "Head",
-    Flag = "AimPart",
-    Callback = function(value) end
-})
-
--- multi dropdown
-MainSection:AddDropdown({
-    Name = "Hit Chance",
-    Items = {"100%", "90%", "75%", "50%"},
-    Default = {"100%"},
-    Multi = true,
-    Flag = "idka",
-    Callback = function(value) end
-})
-
--- textbox
-MainSection:AddTextbox({
-    Name = "Amount of Hitlers",
-    Placeholder = "0.12",
-    Default = "0.125",
-    Numeric = true,
-    Finished = true,
-    Flag = "hitlersvalue",
-    Callback = function(value) end
-})
-
---label
-MainSection:AddLabel("Advanced Options")
-
---toggle
-MainSection:AddToggle({
-    Name = "Wallbang",
-    Default = false,
-    Flag = "Wallbang",
-    Callback = function(value) end
-})
-
---weird setup colorpicker
-MainSection:AddLabel("Wallbang Color"):Colorpicker({
-    Default = Color3.fromRGB(255, 0, 100),
-    Flag = "WallbangColor",
-    Callback = function(value)
-        
+AimbotSection:Dropdown({
+    Name = "Dropdown",
+    Flag = "Dropdown",
+    Items = {"Optionn 1", "Optionn 2", "Optionn 3", "Optionn 4"},
+    Default = "Optionn 2",
+    Multi = false,
+    Callback = function(Value)
+        print(Value)
     end
 })
 
-MainSection:AddToggle({
-    Name = "Triggerbot",
-    Default = false,
-    Flag = "Triggerbot",
-    Callback = function(value)
-        
+AimbotSection:Label("Text"):Colorpicker({
+    Flag = "Colorpicker",
+    Default = Color3.fromRGB(255, 255, 255),
+    Callback = function(Value)
+        print(Value)
     end
 })
 
---------------------------------------------------------------------------------------------------------
-
--- slider
-MainSection2:AddSlider({
-    Name = "Goon Position",
-    Min = 0,
-    Max = 360,
-    Default = 120,
-    Flag = "idkfo2v",
-    Callback = function(value)
+AimbotSection:Textbox({
+    Name = "Textbox",
+    Placeholder = "...",
+    Numeric = false,
+    Finished = false,
+    Flag = "Textbox",
+    Callback = function(Value)
+        print(Value)
     end
 })
 
--- dropdown
-MainSection2:AddDropdown({
-    Name = "Samet Part",
-    Items = {"Head", "UpperTorso", "HumanoidRootPart", "Random"},
-    Default = "Head",
-    Flag = "AimPar3t",
-    Callback = function(value) end
-})
-
--- multi dropdown
-MainSection2:AddDropdown({
-    Name = "Samet Chance",
-    Items = {"100%", "90%", "75%", "50%"},
-    Default = {"100%"},
-    Multi = true,
-    Flag = "idk2a",
-    Callback = function(value) end
-})
-
---weird setup colorpicker
-MainSection2:AddLabel("Wallbang Color"):Colorpicker({
-    Default = Color3.fromRGB(255, 0, 100),
-    Flag = "WallbangColor",
-    Callback = function(value)
-        
+AimbotSection:Label("Text"):Keybind({
+    Name = "Keybind",
+    Flag = "Keybind",
+    Mode = "Toggle",
+    Default = Enum.KeyCode.C,
+    Callback = function(Value)
+        print(Value)
     end
 })
-
-MainSection2:AddToggle({
-    Name = "Triggerbot",
-    Default = false,
-    Flag = "Trigg3erbot",
-    Callback = function(value)
-        
-    end
-})
-
--- textbox
-MainSection2:AddTextbox({
-    Name = "Amount of Samets",
-    Placeholder = "0.12",
-    Default = "0.125",
-    Numeric = true,
-    Finished = true,
-    Flag = "hitlers2value",
-    Callback = function(value) end
-})
-
---label
-MainSection2:AddLabel("Advanced Options")
-
---toggle
-MainSection2:AddToggle({
-    Name = "Wallbang",
-    Default = false,
-    Flag = "Wall3bang",
-    Callback = function(value) end
-})
-
--- toggle
-MainSection2:AddToggle({
-    Name = "Enable Aimbot",
-    Default = false,
-    Flag = "Aimbo2tEnabled",
-    Callback = function(v) end
-})
-
-MainSection2:AddToggle({
-    Name = "Sit Down",
-    Default = true,
-    Flag = "Silen3tAim",
-    Callback = function(value) end
-})
-
--- button
-MainSection2:AddButton({
-    Name = "Remove Highlights",
-    Callback = function(value)
-    end
-})
-
-
--- Menu keybind
-Library.MenuKeybind = tostring(Enum.KeyCode.RightControl)
-local SettingsPage = Window.SettingsPage
-
--- Unload (call to destroy)
--- Library:Unload()
