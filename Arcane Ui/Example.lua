@@ -269,11 +269,28 @@ HomeRight2:Dropdown({
     Flag = "WorldQuality" 
 })
 
-PlayerRight:Dropdown({ 
-    Name = "Rig", 
-    Items = { "R6", "R15" }, 
-    Default = "R15", 
-    Flag = "RigType" 
+PlayerRight:Dropdown({
+    Name = "Rig",
+    Items = { "R6", "R15" },
+    Default = "R15",
+    Flag = "RigType"
+})
+
+
+
+-- Dropdown:SetValue
+local NumberDropdown = HomeLeft:Dropdown({
+    Name = "Number",
+    Items = { "1", "3", "4" },
+    Default = "1",
+    Flag = "NumberChoice"
+})
+
+HomeLeft:Button({
+    Name = "Rename 1 → 2",
+    Callback = function()
+        NumberDropdown:SetValue("1", "2")
+    end
 })
 
 
